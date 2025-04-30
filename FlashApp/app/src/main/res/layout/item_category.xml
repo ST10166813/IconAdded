@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/categoryIconImageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/bulb" />
+
+    <TextView
+        android:id="@+id/categoryNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/categoryIconImageView"
+        app:layout_constraintTop_toTopOf="@+id/categoryIconImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Category Name" />
+
+    <TextView
+        android:id="@+id/categoryDescriptionTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/categoryIconImageView"
+        app:layout_constraintTop_toBottomOf="@+id/categoryNameTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Description" />
+
+    <TextView
+        android:id="@+id/categoryLimitTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/categoryNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/categoryDescriptionTextView"
+        tools:text="Limit: 100.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
