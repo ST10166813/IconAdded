@@ -7,22 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".CategoryActivity">
 
-    <ImageView
-        android:id="@+id/home_btn_cate"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="56dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_home" />
-
     <TextView
         android:id="@+id/cate_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="128dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="52dp"
         android:fontFamily="monospace"
         android:text="ADD NEW CATEGORY"
         android:textAlignment="center"
@@ -32,30 +22,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/cate_limit"
-        android:layout_width="353dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/orange_button_border"
-        android:ems="10"
-        android:fontFamily="monospace"
-        android:hint=" LIMIT"
-        android:inputType="number"
-        android:paddingStart="10sp"
-        android:textAlignment="textStart"
-        android:textColor="@color/DarkOrange"
-        android:textColorHint="@color/DarkOrange"
-        android:textSize="14sp"
-        app:iconTint="@color/DarkOrange"
-        app:layout_constraintStart_toStartOf="@+id/limit_lbl"
-        app:layout_constraintTop_toBottomOf="@+id/limit_lbl" />
+    <ToggleButton
+        android:id="@+id/toggle_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:textOff="EXPENSE"
+        android:textOn="INCOME"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cate_heading" />
 
     <EditText
         android:id="@+id/cate_name"
         android:layout_width="353dp"
         android:layout_height="43dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/purple_button_border"
         android:ems="10"
         android:fontFamily="monospace"
@@ -75,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="14dp"
         android:fontFamily="monospace"
         android:letterSpacing="0.3"
         android:text="CATEGORY NAME"
@@ -84,14 +66,33 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cate_heading" />
+        app:layout_constraintTop_toBottomOf="@+id/toggle_type" />
+
+    <EditText
+        android:id="@+id/cate_description"
+        android:layout_width="353dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/purple_button_border"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint=" DESCRIPTION"
+        android:inputType="text"
+        android:paddingStart="10sp"
+        android:textAlignment="textStart"
+        android:textColor="@color/DarkViolet"
+        android:textColorHint="@color/DarkViolet"
+        android:textSize="14sp"
+        app:iconTint="@color/DarkViolet"
+        app:layout_constraintStart_toStartOf="@+id/description_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/description_lbl" />
 
     <TextView
         android:id="@+id/description_lbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="monospace"
         android:letterSpacing="0.3"
         android:text="DESCRIPTION"
@@ -101,6 +102,41 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cate_name" />
+
+    <EditText
+        android:id="@+id/cate_limit"
+        android:layout_width="353dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/orange_button_border"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint=" LIMIT"
+        android:inputType="number"
+        android:paddingStart="10sp"
+        android:textAlignment="textStart"
+        android:textColor="@color/DarkOrange"
+        android:textColorHint="@color/DarkOrange"
+        android:textSize="14sp"
+        app:iconTint="@color/DarkOrange"
+        app:layout_constraintStart_toStartOf="@+id/limit_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/limit_lbl" />
+
+    <TextView
+        android:id="@+id/limit_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.3"
+        android:text="LIMIT"
+        android:textAlignment="textStart"
+        android:textColor="@color/DarkOrange"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cate_description" />
 
     <TextView
         android:id="@+id/icon_lbl"
@@ -125,6 +161,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="Icon Preview"
         app:layout_constraintEnd_toStartOf="@+id/imageView7"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toBottomOf="@+id/cate_limit"
@@ -178,40 +215,6 @@
         app:layout_constraintTop_toBottomOf="@+id/cate_limit"
         app:srcCompat="@drawable/plane" />
 
-    <EditText
-        android:id="@+id/cate_description"
-        android:layout_width="353dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/purple_button_border"
-        android:ems="10"
-        android:fontFamily="monospace"
-        android:hint=" DESCRIPTION"
-        android:inputType="text"
-        android:paddingStart="10sp"
-        android:textAlignment="textStart"
-        android:textColor="@color/DarkViolet"
-        android:textColorHint="@color/DarkViolet"
-        android:textSize="14sp"
-        app:iconTint="@color/DarkViolet"
-        app:layout_constraintStart_toStartOf="@+id/description_lbl"
-        app:layout_constraintTop_toBottomOf="@+id/description_lbl" />
-
-    <TextView
-        android:id="@+id/limit_lbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="monospace"
-        android:letterSpacing="0.3"
-        android:text="LIMIT"
-        android:textAlignment="textStart"
-        android:textColor="@color/DarkOrange"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cate_description" />
 
     <Button
         android:id="@+id/cate_save_btn"
@@ -242,43 +245,6 @@
         app:layout_constraintTop_toTopOf="@+id/cate_save_btn"
         app:layout_constraintVertical_bias="0.0" />
 
-    <RadioButton
-        android:id="@+id/Expense_btn"
-        android:layout_width="116dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="30dp"
-        android:fontFamily="monospace"
-        android:text="EXPENSES"
-        android:textAlignment="textStart"
-        android:textColor="@color/DarkOrange"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/category_lbl"
-        app:layout_constraintEnd_toStartOf="@+id/Income_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cate_heading" />
-
-    <RadioButton
-        android:id="@+id/Income_btn"
-        android:layout_width="113dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="65dp"
-        android:text="INCOME"
-        android:fontFamily="monospace"
-        android:textAlignment="textStart"
-        android:textColor="@color/DarkOrange"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cate_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Expense_btn"
-        app:layout_constraintTop_toBottomOf="@+id/cate_heading" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

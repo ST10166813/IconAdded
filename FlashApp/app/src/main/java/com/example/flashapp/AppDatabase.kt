@@ -5,11 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [UserEntity::class, CategoryEntity::class,ExpenseEntity::class], version = 3, exportSchema = false)
+@Database(entities = [UserEntity::class, Category::class, ExpenseEntity::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun categoryDao(): CategoryDao
-
+    abstract fun expenseDao(): ExpenseDao
 
     companion object {
         @Volatile
@@ -21,7 +21,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "BudgetApp_Db"
-                ).fallbackToDestructiveMigration()
+                )
+                    .allowMainThreadQueries() // Remove for production
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

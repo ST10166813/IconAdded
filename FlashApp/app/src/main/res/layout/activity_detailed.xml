@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".DetailedActivity">
+
+    <ImageButton
+        android:id="@+id/closeBtn"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="Close" />
+
+    <TextView
+        android:id="@+id/detailed_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:fontFamily="monospace"
+        android:text="EDIT CATEGORY"
+        android:textAlignment="center"
+        android:textColor="#121010"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/icon_preview_detailed"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailed_heading"
+        tools:srcCompat="@drawable/bulb"
+        android:contentDescription="Category Icon" />
+
+    <TextView
+        android:id="@+id/label_lbl_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.3"
+        android:text="CATEGORY NAME"
+        android:textColor="@color/DarkViolet"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/icon_preview_detailed"
+        app:layout_constraintTop_toTopOf="@+id/icon_preview_detailed"
+        app:layout_constraintBottom_toTopOf="@+id/labelInput" />
+
+    <EditText
+        android:id="@+id/labelInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Category Name"
+        android:inputType="text"
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:background="@drawable/purple_button_border"
+        app:layout_constraintTop_toBottomOf="@id/label_lbl_detailed"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/description_lbl_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.3"
+        android:text="DESCRIPTION"
+        android:textColor="@color/DarkViolet"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelInput"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionInput" />
+
+    <EditText
+        android:id="@+id/descriptionInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        android:inputType="text"
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:background="@drawable/purple_button_border"
+        app:layout_constraintTop_toBottomOf="@id/description_lbl_detailed"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/limit_lbl_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.3"
+        android:text="LIMIT"
+        android:textColor="@color/DarkOrange"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/descriptionInput"
+        app:layout_constraintBottom_toTopOf="@+id/amountInput" />
+
+    <EditText
+        android:id="@+id/amountInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Limit"
+        android:inputType="numberDecimal"
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:background="@drawable/orange_button_border"
+        app:layout_constraintTop_toBottomOf="@id/limit_lbl_detailed"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/type_lbl_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.3"
+        android:text="TYPE"
+        android:textColor="@color/DarkViolet"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amountInput"
+        app:layout_constraintBottom_toTopOf="@+id/toggle_type_detailed" />
+
+    <ToggleButton
+        android:id="@+id/toggle_type_detailed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textOff="EXPENSE"
+        android:textOn="INCOME"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type_lbl_detailed" />
+
+    <Button
+        android:id="@+id/updateBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Update Category"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/green"
+        android:padding="14dp"
+        app:layout_constraintTop_toBottomOf="@id/toggle_type_detailed"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

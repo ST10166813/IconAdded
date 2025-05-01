@@ -1,0 +1,140 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/financialReportTitle"
+            android:text="Financial Report"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/DarkViolet"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Select Period Header -->
+        <TextView
+            android:id="@+id/selectPeriodHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Select Period"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Date Selector Boxes -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:id="@+id/startDate"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/square_box_outline"
+                android:gravity="center"
+                android:text="Start Date"
+                android:textColor="@color/DarkViolet"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="false" />
+
+            <TextView
+                android:id="@+id/endDate"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/square_box_outline"
+                android:gravity="center"
+                android:text="End Date"
+                android:textColor="@color/DarkViolet"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="false" />
+        </LinearLayout>
+
+        <!-- Generate Report Button -->
+        <Button
+            android:id="@+id/generateReportBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/orange_button_border"
+            android:text="Generate Report"
+            android:textColor="@color/OrangeRed"
+            android:textStyle="bold" />
+
+        <!-- Cancel Button -->
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Total Spent -->
+        <TextView
+            android:id="@+id/totalSpentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Spent: "
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/DarkViolet" />
+
+        <LinearLayout
+            android:id="@+id/categoryListContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp" />
+
+        <!-- Bottom Buttons (Categories and Expenses) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <!-- Categories Button -->
+            <ImageButton
+                android:id="@+id/categoriesBtn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_list"
+                android:contentDescription="Categories"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter" />
+
+            <!-- Expenses Button -->
+            <ImageButton
+                android:id="@+id/expensesBtn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_coins"
+                android:contentDescription="Expenses"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

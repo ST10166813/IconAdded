@@ -4,107 +4,136 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class CategoryActivity : AppCompatActivity() {
 
-    private lateinit var categoryNameEditText: EditText
-    private lateinit var categoryDescriptionEditText: EditText
-    private lateinit var categoryLimitEditText: EditText
-    private lateinit var saveButton: Button
-    private lateinit var cancelButton: Button
-    private lateinit var homeButton: ImageView
-    private lateinit var expenseRadioButton: RadioButton
-    private lateinit var incomeRadioButton: RadioButton
-    private var selectedIcon: Int = R.drawable.bulb // Default icon
 
-    private lateinit var categoryDao: CategoryDao
+    private lateinit var labelInput: EditText
+    private lateinit var descriptionInput: EditText
+    private lateinit var amountInput: EditText
+    private lateinit var addTransactionBtn: Button
+    private lateinit var closeBtn: Button
+    private lateinit var toggleType: ToggleButton
+    private lateinit var iconBulb: ImageView
+    private lateinit var iconGasStation: ImageView
+    private lateinit var iconDeliveryMan: ImageView
+    private lateinit var iconPlane: ImageView
+    private lateinit var iconGrocery: ImageView
+
+    private var selectedIcon: Int? = null
+    private var categoryType: String = "EXPENSE" // Default value
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
 
-        categoryDao = AppDatabase.getDatabase(application).categoryDao()
 
-        categoryNameEditText = findViewById(R.id.cate_name)
-        categoryDescriptionEditText = findViewById(R.id.cate_description)
-        categoryLimitEditText = findViewById(R.id.cate_limit)
-        saveButton = findViewById(R.id.cate_save_btn)
-        cancelButton = findViewById(R.id.cate_cancel_btn)
-        homeButton = findViewById(R.id.home_btn_cate)
-        expenseRadioButton = findViewById(R.id.Expense_btn)
-        incomeRadioButton = findViewById(R.id.Income_btn)
+        labelInput = findViewById(R.id.cate_name)
+        descriptionInput = findViewById(R.id.cate_description)
+        amountInput = findViewById(R.id.cate_limit)
+        addTransactionBtn = findViewById(R.id.cate_save_btn)
+        closeBtn = findViewById(R.id.cate_cancel_btn)
+        toggleType = findViewById(R.id.toggle_type)
+        iconBulb = findViewById(R.id.imageView3)
+        iconGasStation = findViewById(R.id.imageView5)
+        iconDeliveryMan = findViewById(R.id.imageView6)
+        iconPlane = findViewById(R.id.imageView7)
+        iconGrocery = findViewById(R.id.imageView8)
 
-        setupIconSelection()
-        setupButtons()
-    }
+        labelInput.addTextChangedListener {
+            labelInput.error = null
+        }
 
-    private fun setupIconSelection() {
-        findViewById<ImageView>(R.id.imageView3).setOnClickListener { selectedIcon = R.drawable.bulb }
-        findViewById<ImageView>(R.id.imageView5).setOnClickListener { selectedIcon = R.drawable.gasstation }
-        findViewById<ImageView>(R.id.imageView6).setOnClickListener { selectedIcon = R.drawable.deliveryman }
-        findViewById<ImageView>(R.id.imageView7).setOnClickListener { selectedIcon = R.drawable.plane }
-        findViewById<ImageView>(R.id.imageView8).setOnClickListener { selectedIcon = R.drawable.grocery }
-        // Add more icon click listeners as needed
-    }
+        amountInput.addTextChangedListener {
+            amountInput.error = null
+        }
 
-    private fun setupButtons() {
-        saveButton.setOnClickListener {
-            val name = categoryNameEditText.text.toString().trim()
-            val description = categoryDescriptionEditText.text.toString().trim()
-            val limitText = categoryLimitEditText.text.toString().trim()
-            val limit = limitText.toDoubleOrNull()
-            var type = ""
+        toggleType.setOnCheckedChangeListener { _, isChecked ->
+            categoryType = if (isChecked) "INCOME" else "EXPENSE"
+        }
 
-            if (expenseRadioButton.isChecked) {
-                type = "Expense"
-            } else if (incomeRadioButton.isChecked) {
-                type = "Income"
+        iconBulb.setOnClickListener {
+            selectedIcon = R.drawable.bulb
+            // Optionally provide visual feedback that this icon is selected
+            updateIconSelection(R.id.imageView3)
+        }
+
+        iconGasStation.setOnClickListener {
+            selectedIcon = R.drawable.gasstation
+            updateIconSelection(R.id.imageView5)
+        }
+
+        iconDeliveryMan.setOnClickListener {
+            selectedIcon = R.drawable.deliveryman
+            updateIconSelection(R.id.imageView6)
+        }
+
+        iconPlane.setOnClickListener {
+            selectedIcon = R.drawable.plane
+            updateIconSelection(R.id.imageView7)
+        }
+
+        iconGrocery.setOnClickListener {
+            selectedIcon = R.drawable.grocery
+            updateIconSelection(R.id.imageView8)
+        }
+
+        addTransactionBtn.setOnClickListener {
+            val name = labelInput.text.toString()
+            val description = descriptionInput.text.toString()
+            val limit = amountInput.text.toString().toDoubleOrNull()
+
+            if (name.isEmpty()) {
+                labelInput.error = "Please enter a valid name"
+            } else if (limit == null) {
+                amountInput.error = "Please enter a valid limit"
+            } else if (selectedIcon == null) {
+                Toast.makeText(this, "Please choose an icon", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Please select category type", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            if (name.isNotEmpty()) {
-                if (limit == null) {
-                    Toast.makeText(this, "Please enter a valid limit", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-
-                val newCategory = CategoryEntity(
+                val category = Category(
                     name = name,
-                    description = if (description.isNotEmpty()) description else null,
+                    description = description,
                     limit = limit,
-                    icon = selectedIcon,
-                    type = type
+                    type = categoryType,
+                    iconResId = selectedIcon!!
                 )
-
-                Thread {
-                    categoryDao.insertSync(newCategory)
-                    runOnUiThread {
-                        clearInputFields()
-                        Toast.makeText(this, "Category saved", Toast.LENGTH_SHORT).show()
-                    }
-                }.start()
-            } else {
-                Toast.makeText(this, "Category name cannot be empty", Toast.LENGTH_SHORT).show()
+                insert(category)
             }
         }
 
-        cancelButton.setOnClickListener {
-            clearInputFields()
+        closeBtn.setOnClickListener {
+            finish()
         }
 
-        homeButton.setOnClickListener {
-            startActivity(Intent(this, DashboardActivity::class.java))
+
+    }
+
+    private fun updateIconSelection(selectedId: Int) {
+        // Reset visual feedback for all icons
+        iconBulb.alpha = 0.5f
+        iconGasStation.alpha = 0.5f
+        iconDeliveryMan.alpha = 0.5f
+        iconPlane.alpha = 0.5f
+        iconGrocery.alpha = 0.5f
+
+        // Highlight the selected icon
+        when (selectedId) {
+            R.id.imageView3 -> iconBulb.alpha = 1.0f
+            R.id.imageView5 -> iconGasStation.alpha = 1.0f
+            R.id.imageView6 -> iconDeliveryMan.alpha = 1.0f
+            R.id.imageView7 -> iconPlane.alpha = 1.0f
+            R.id.imageView8 -> iconGrocery.alpha = 1.0f
         }
     }
 
-    private fun clearInputFields() {
-        categoryNameEditText.text.clear()
-        categoryDescriptionEditText.text.clear()
-        categoryLimitEditText.text.clear()
-        expenseRadioButton.isChecked = false
-        incomeRadioButton.isChecked = false
-        selectedIcon = R.drawable.bulb // Reset default icon
+    private fun insert(category: Category) {
+        val db = AppDatabase.getDatabase(this)
+        GlobalScope.launch {
+            db.categoryDao().insertAll(category)
+            runOnUiThread { finish() }
+        }
     }
 }

@@ -1,19 +1,18 @@
 package com.example.flashapp
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-
+import androidx.room.*
 
 @Dao
 interface CategoryDao {
-
-    // Synchronous method to get all categories
     @Query("SELECT * FROM categories")
-    fun getAllCategoriesSync(): List<CategoryEntity>
+    fun getAll(): List<Category>
 
-    // Synchronous method to insert a new category
     @Insert
-    fun insertSync(category: CategoryEntity)
-}
+    fun insertAll(vararg category: Category)
 
+    @Update
+    fun update(vararg category: Category)
+
+    @Delete
+    fun delete(category: Category)
+}
