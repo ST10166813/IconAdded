@@ -1,5 +1,6 @@
 package com.example.flashapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,10 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.alrLogin.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
 
         binding.regpageButton.setOnClickListener {
             val username = binding.emailInput.text.toString().trim()

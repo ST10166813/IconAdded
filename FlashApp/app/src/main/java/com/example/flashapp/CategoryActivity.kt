@@ -35,7 +35,6 @@ class CategoryActivity : AppCompatActivity() {
         descriptionInput = findViewById(R.id.cate_description)
         amountInput = findViewById(R.id.cate_limit)
         addTransactionBtn = findViewById(R.id.cate_save_btn)
-        closeBtn = findViewById(R.id.cate_cancel_btn)
         toggleType = findViewById(R.id.toggle_type)
         iconBulb = findViewById(R.id.imageView3)
         iconGasStation = findViewById(R.id.imageView5)
@@ -104,11 +103,12 @@ class CategoryActivity : AppCompatActivity() {
             }
         }
 
-        closeBtn.setOnClickListener {
+        val homeIcon = findViewById<ImageView>(R.id.homeIcon)
+        homeIcon.setOnClickListener {
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
             finish()
         }
-
-
     }
 
     private fun updateIconSelection(selectedId: Int) {

@@ -32,7 +32,7 @@ class DashboardActivity : AppCompatActivity() {
         binding.recyclerView.adapter = expenseAdapter
 
         val filterOptions = arrayOf("ALL", "INCOME", "EXPENSE")
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, filterOptions)
+        val spinnerAdapter = ArrayAdapter(this, R.layout.spinner_item, filterOptions)
         binding.filterSpinner.adapter = spinnerAdapter
 
         binding.filterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -42,6 +42,11 @@ class DashboardActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
+        binding.trophyIcon.setOnClickListener {
+            val intent = Intent(this, GoalActivity::class.java)
+            startActivity(intent)
         }
 
         binding.categoriesLayout.setOnClickListener {
@@ -56,8 +61,6 @@ class DashboardActivity : AppCompatActivity() {
             Toast.makeText(this, "Going to ReportActivity", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, ReportActivity::class.java))
         }
-
-
 
         binding.viewAllText.setOnClickListener {
             startActivity(Intent(this, ViewAllExpensesActivity::class.java))

@@ -3,6 +3,7 @@ package com.example.flashapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,14 +28,11 @@ class CategoryListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
-        backBtn = findViewById(R.id.backBtn)
-
-        // Handle back button click
-        backBtn.setOnClickListener {
-            // Navigate back to the Dashboard activity
+        val homeIcon = findViewById<ImageView>(R.id.homeIcon)
+        homeIcon.setOnClickListener {
             val intent = Intent(this, DashboardActivity::class.java)
             startActivity(intent)
-            finish() // Optional: close the current activity if you want to go back to the Dashboard directly
+            finish()
         }
 
         fetchCategories()

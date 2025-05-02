@@ -1,98 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:clipToPadding="false"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    tools:context=".AddExpenseActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#FAFAFA">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/homeIcon"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_home"
+                    android:contentDescription="Back to Dashboard"
+                    android:padding="4dp"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/cate_heading"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ADD NEW EXPENSE/INCOME"
+                    android:textColor="#121010"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"
+                    android:gravity="center"
+                    android:layout_marginStart="-24dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Toggle Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TRANSACTION TYPE"
+            android:textColor="@color/DarkViolet"
+            android:letterSpacing="0.3"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="monospace" />
 
         <ToggleButton
             android:id="@+id/toggle_type"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textOn="INCOME"
+            android:layout_height="40dp"
             android:textOff="EXPENSE"
-            android:layout_marginBottom="16dp" />
+            android:textOn="INCOME"
+            android:fontFamily="monospace"
+            android:background="@drawable/filled_purple_btn"
+            android:textColor="@color/white"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:text="CATEGORY"
             android:textStyle="bold"
             android:textColor="@color/DarkViolet"
-            android:layout_width="wrap_content"
+            android:letterSpacing="0.3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginBottom="6dp"
+            android:fontFamily="monospace"/>
 
         <Spinner
             android:id="@+id/input_category_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:layout_height="40dp"
+            android:background="@drawable/purple_button_border"
+            android:popupBackground="#FFFFFF"
+            android:textAlignment="center"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:text="DESCRIPTION"
             android:textStyle="bold"
+            android:letterSpacing="0.3"
             android:textColor="@color/DarkViolet"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginBottom="6dp"
+            android:fontFamily="monospace"/>
 
         <EditText
             android:id="@+id/input_description"
             android:hint="e.g. Monthly shopping"
             android:layout_width="match_parent"
-            android:layout_height="43dp"
+            android:layout_height="40dp"
             android:background="@drawable/purple_button_border"
             android:padding="10dp"
             android:textColor="@color/DarkViolet"
             android:textColorHint="@color/DarkViolet"
             android:textSize="14sp"
-            android:layout_marginTop="8dp" />
+            android:fontFamily="monospace"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:text="AMOUNT"
             android:textStyle="bold"
+            android:letterSpacing="0.3"
             android:textColor="@color/DarkOrange"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginBottom="6dp"
+            android:fontFamily="monospace"/>
 
         <EditText
             android:id="@+id/input_amount"
             android:hint="R0.00"
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
-            android:layout_height="43dp"
+            android:layout_height="40dp"
             android:background="@drawable/orange_button_border"
             android:padding="10dp"
             android:textColor="@color/DarkOrange"
             android:textColorHint="@color/DarkOrange"
             android:textSize="14sp"
-            android:layout_marginTop="8dp" />
+            android:fontFamily="monospace"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:text="DATE"
             android:textStyle="bold"
             android:textColor="@color/DarkViolet"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginBottom="6dp"
+            android:fontFamily="monospace"/>
 
         <EditText
             android:id="@+id/input_date"
-            android:hint="DD-MM-YYYY"
+            android:hint="YYYY-MM-DD"
+            android:letterSpacing="0.3"
             android:layout_width="match_parent"
-            android:layout_height="43dp"
+            android:layout_height="40dp"
             android:background="@drawable/purple_button_border"
             android:padding="10dp"
             android:textColor="@color/DarkViolet"
             android:textColorHint="@color/DarkViolet"
             android:textSize="14sp"
-            android:layout_marginTop="8dp"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="12dp"
             android:focusable="false"
             android:clickable="true"
             android:inputType="none" />
@@ -100,16 +176,17 @@
         <TextView
             android:text="RECEIPT IMAGE (OPTIONAL)"
             android:textStyle="bold"
-            android:textColor="#555555"
-            android:layout_width="wrap_content"
+            android:textColor="@color/DarkViolet"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginBottom="6dp"
+            android:fontFamily="monospace"/>
 
         <ImageView
             android:id="@+id/image_preview"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
             android:scaleType="centerCrop"
             android:background="#EEEEEE" />
 
@@ -118,39 +195,22 @@
             android:text="Upload Receipt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:backgroundTint="@color/BlueViolet"
             android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="16dp" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/save_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:weightSum="2">
+            android:layout_height="44dp"
+            android:text="Save"
+            android:background="@drawable/purple_button_border"
+            android:textColor="@android:color/holo_purple"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="12dp"/>
 
-            <Button
-                android:id="@+id/cancel_btn"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Cancel"
-                android:background="@drawable/orange_button_border"
-                android:textColor="@color/DarkViolet"
-                android:textStyle="bold"/>
-
-            <Button
-                android:id="@+id/save_btn"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Save"
-                android:layout_marginStart="16dp"
-                android:background="@drawable/filled_purple_btn"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"/>
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

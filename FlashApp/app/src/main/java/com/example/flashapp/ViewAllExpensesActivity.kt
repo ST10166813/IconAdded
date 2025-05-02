@@ -1,5 +1,6 @@
 package com.example.flashapp
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -27,8 +28,10 @@ class ViewAllExpensesActivity : AppCompatActivity() {
 
         loadAllExpenses()
 
-        binding.backBtn.setOnClickListener {
-            finish() // return to dashboard
+        binding.homeIcon.setOnClickListener {
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -43,5 +46,4 @@ class ViewAllExpensesActivity : AppCompatActivity() {
         super.onResume()
         loadAllExpenses()
     }
-
 }
